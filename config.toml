@@ -1,7 +1,28 @@
 baseURL = "http://norris.dev/"
 languageCode = "en-us"
 title = "Ryan Norris"
-theme = "ananke"
+theme = "hermit"
+
+defaultContentLanguage = "en"
+
+pygmentsCodefences  = true
+pygmentsUseClasses  = true
+
+[params]
+  dateform        = "Jan 2, 2006"
+  dateformShort   = "Jan 2"
+  dateformNum     = "2006-01-02"
+  dateformNumTime = "2006-01-02 15:04 -0700"
+
+  homeSubtitle = "Software Developer"
+
+  [[params.social]]
+    name = "github"
+    url = "https://github.com/rynorris"
+
+  [[params.social]]
+    name = "linkedin"
+    url = "https://www.linkedin.com/in/rynorris"
 
 [permalinks]
-  posts = "/:year/:month/:title"
+  posts = "/posts/:year/:month/:title"
