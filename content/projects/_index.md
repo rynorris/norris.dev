@@ -1,7 +1,6 @@
 ---
 title: "Projects"
 date: 2019-03-02T17:51:20+09:00
-draft: true
 menu: main
 ---
 

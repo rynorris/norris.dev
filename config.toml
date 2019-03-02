@@ -2,3 +2,6 @@ baseURL = "http://norris.dev/"
 languageCode = "en-us"
 title = "Ryan Norris"
 theme = "ananke"
+
+[permalinks]
+  posts = "/:year/:month/:title"
