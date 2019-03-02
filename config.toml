@@ -1,4 +1,4 @@
-baseURL = "http://norris.dev/"
+baseURL = "https://norris.dev/"
 languageCode = "en-us"
 title = "Ryan Norris"
 theme = "hermit"
