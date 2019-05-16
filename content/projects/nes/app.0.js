@@ -1,0 +1,14 @@
+(window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
+
+/***/ "./index.js":
+/*!******************!*\
+  !*** ./index.js ***!
+  \******************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("const nes_audio = new AudioContext();\nconst worker = new Worker(\"worker.js\");\n\nconst render = frame => {\n    const screen = document.getElementById(\"screen\");\n    const tgt = document.createElement(\"canvas\");\n    tgt.width = 256;\n    tgt.height = 240;\n\n    const ctx = tgt.getContext(\"2d\");\n    const img = ctx.createImageData(256, 240);\n    for (let i = 0; i < img.data.length / 4; i++) {\n        // RGBA\n        img.data[i * 4] = frame[i * 3];\n        img.data[i * 4 + 1] = frame[i * 3 + 1];\n        img.data[i * 4 + 2] = frame[i * 3 + 2];\n        img.data[i * 4 + 3] = 255;\n    }\n    ctx.putImageData(img, 0, 0);\n\n    screen.getContext(\"2d\").drawImage(tgt, 0, 0, 512, 480);\n};\n\nvar BUF_LENGTH = 0.1;\nvar nextStartTime = 0;\n\nconst queue_audio = buf => {\n    if (buf.length === 0) {\n        return;\n    }\n\n    const ctx = nes_audio;\n    const audioBuffer = ctx.createBuffer(1, buf.length, 48000);\n    audioBuffer.getChannelData(0).set(buf);\n    const source = ctx.createBufferSource();\n    source.buffer = audioBuffer;\n    source.connect(ctx.destination);\n\n    const bufLength = audioBuffer.length / audioBuffer.sampleRate;\n\n    if (nextStartTime === 0) {\n        // Initial buffer time.\n        nextStartTime = ctx.currentTime + BUF_LENGTH;\n    }\n\n    source.start(nextStartTime);\n\n    nextStartTime += bufLength;\n\n    // Clamp audio latency.\n    if (nextStartTime < ctx.currentTime || nextStartTime > ctx.currentTime + BUF_LENGTH) {\n        // Reset buffer.\n        nextStartTime = ctx.currentTime + BUF_LENGTH;\n    }\n}\n\nvar stopRunning = () => {};\n\nconst selectRom = files => {\n    if (files.length !== 1) {\n        throw new Error(\"Must select exactly 1 file\");\n    }\n\n    stopRunning();\n\n    const file = files[0];\n    const reader = new FileReader();\n    var nes = null;\n    var running = true;\n\n    reader.onloadend = () => {\n        const array = reader.result;\n        \n        worker.postMessage({ kind: \"rom\", data: array }, [array]);\n    }\n\n    reader.readAsArrayBuffer(file);\n};\n\ndocument.onkeydown = event => {\n    worker.postMessage({ kind: \"keydown\", key: event.key });\n};\n\ndocument.onkeyup = event => {\n    worker.postMessage({ kind: \"keyup\", key: event.key });\n};\n\nworker.onmessage = ({ data }) => {\n    queue_audio(new Float32Array(data.audio));\n    render(new Uint8Array(data.video));\n};\n\nwindow.selectRom = selectRom;\n\n\n//# sourceURL=webpack:///./index.js?");
+
+/***/ })
+
+}]);
