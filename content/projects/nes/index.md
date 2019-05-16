@@ -25,7 +25,7 @@ Here it is embedded below!  (I think this only works on Chrome, haven't figured 
 
 
 <figure>
-    <canvas id="screen" width="512", height="480", style="background: black"></canvas>
+    <canvas id="screen" width="512", height="480", style="background: black" tabIndex=0></canvas>
     <div>
         <label for="rom_selector">Choose a ROM to play (.nes file)</label>
         <input type="file" id="rom-selector" name="rom_selector" accept=".nes" onchange="selectRom(this.files)">
