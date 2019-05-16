@@ -19,12 +19,19 @@ I also had a moonshot stretch goal of compiling the emulator to WebAssembly (was
 Web Assembly
 ------------
 
-Due to the magic of [wasm-pack]() I was able to compile the emulator core to wasm extremely quickly (after just a little refactoring), and had a fully functional web-based emulator in under a day's work.
+Due to the magic of [wasm-pack](https://github.com/rustwasm/wasm-pack) I was able to compile the emulator core to wasm extremely quickly (after just a little refactoring), and had a fully functional web-based emulator in under a day's work.
 
 Here it is embedded below!  (I think this only works on Chrome, haven't figured out why yet)
 
-<canvas id="screen" width="512", height="480"></canvas>
-<input type="file" id="rom-selector" onchange="selectRom(this.files)">
-<script src="app.js"></script>
+
+<figure>
+    <canvas id="screen" width="512", height="480", style="background: black"></canvas>
+    <div>
+        <label for="rom_selector">Choose a ROM to play (.nes file)</label>
+        <input type="file" id="rom-selector" name="rom_selector" accept=".nes" onchange="selectRom(this.files)">
+        <div>Controls: A = Start, S = Select, Z = A, X = B, Arrow Keys = D-Pad</div>
+    </div>
+    <script src="app.js"></script>
+</figure>
 
 
