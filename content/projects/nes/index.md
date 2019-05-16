@@ -1,7 +1,7 @@
 ---
 title: "Nes"
 date: 2019-03-02T18:06:11+09:00
-description: an NES emulator written in Rust.
+description: an NES emulator written in Rust and compiled to wasm for the web
 ---
 
 [nes](https://github.com/rynorris/nes) is a Nintendo Entertainment System (NES) emulator written in Rust.
