@@ -21,7 +21,7 @@ Web Assembly
 
 Due to the magic of [wasm-pack](https://github.com/rustwasm/wasm-pack) I was able to compile the emulator core to wasm extremely quickly (after just a little refactoring), and had a fully functional web-based emulator in under a day's work.
 
-Here it is embedded below!  (I think this only works on Chrome, haven't figured out why yet)
+Here it is embedded below!  This should work in Chrome and Firefox, but not IE/Edge or Safari due to their lack of support for `BigUInt64Array`.
 
 
 <figure>
