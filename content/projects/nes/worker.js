@@ -24,7 +24,7 @@
 /******/ 	var wasmImportObjects = {
 /******/ 		"../pkg/nes_web_bg.wasm": function() {
 /******/ 			return {
-/******/ 				"./nes_web": {
+/******/ 				"./nes_web.js": {
 /******/ 					"__wbindgen_throw": function(p0i32,p1i32) {
 /******/ 						return installedModules["../pkg/nes_web.js"].exports["__wbindgen_throw"](p0i32,p1i32);
 /******/ 					}
@@ -64,7 +64,7 @@
 /******/ 		promises.push(Promise.resolve().then(function() {
 /******/ 			// "1" is the signal for "already loaded"
 /******/ 			if(!installedChunks[chunkId]) {
-/******/ 				importScripts("worker." + ({}[chunkId]||chunkId) + ".js");
+/******/ 				importScripts(__webpack_require__.p + "worker." + ({}[chunkId]||chunkId) + ".js");
 /******/ 			}
 /******/ 		}));
 /******/
@@ -80,7 +80,7 @@
 /******/ 				promises.push(installedWasmModuleData);
 /******/ 			else {
 /******/ 				var importObject = wasmImportObjects[wasmModuleId]();
-/******/ 				var req = fetch(__webpack_require__.p + "" + {"../pkg/nes_web_bg.wasm":"2bf75400950d90a2a8a3"}[wasmModuleId] + ".module.wasm");
+/******/ 				var req = fetch(__webpack_require__.p + "" + {"../pkg/nes_web_bg.wasm":"7fc615251e1d861d0297"}[wasmModuleId] + ".module.wasm");
 /******/ 				var promise;
 /******/ 				if(importObject instanceof Promise && typeof WebAssembly.compileStreaming === 'function') {
 /******/ 					promise = Promise.all([WebAssembly.compileStreaming(req), importObject]).then(function(items) {
